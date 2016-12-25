@@ -54,3 +54,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Project specific gems
 gem 'bootstrap-sass'
+gem 'mysql2'

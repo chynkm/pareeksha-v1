@@ -1,0 +1,2 @@
+class SolutionDetail < ApplicationRecord
+end
