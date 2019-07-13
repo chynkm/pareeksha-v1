@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20161225011803) do
 
-  create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "email",                  null: false
     t.string   "name",       limit: 100, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  create_table "exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "candidate_id"
     t.integer  "question_id"
     t.string   "link",                                            null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161225011803) do
     t.index ["question_id"], name: "index_exams_on_question_id", using: :btree
   end
 
-  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.text     "question",   limit: 4294967295, null: false
     t.integer  "duration",                                   comment: "in seconds"
     t.integer  "difficulty", limit: 2
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20161225011803) do
     t.datetime "updated_at",                    null: false
   end
 
-  create_table "solution_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "solution_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "solution_id"
     t.integer  "parameter",   limit: 2,     default: 1
     t.text     "value",       limit: 65535,             null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20161225011803) do
     t.index ["solution_id"], name: "index_solution_details_on_solution_id", using: :btree
   end
 
-  create_table "solutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "solutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "question_id"
     t.integer  "complexity",  limit: 2
     t.text     "result",      limit: 65535, null: false
@@ -60,17 +60,7 @@ ActiveRecord::Schema.define(version: 20161225011803) do
     t.index ["question_id"], name: "index_solutions_on_question_id", using: :btree
   end
 
-  create_table "test_solutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer  "exam_id"
-    t.integer  "solution_id"
-    t.boolean  "status",      default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.index ["exam_id"], name: "index_test_solutions_on_exam_id", using: :btree
-    t.index ["solution_id"], name: "index_test_solutions_on_solution_id", using: :btree
-  end
-
-  create_table "verify_solutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "verify_solutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "exam_id"
     t.integer  "solution_id"
     t.boolean  "result",      default: false
